@@ -1,0 +1,3 @@
+This plot compares the volume of precipitation interpolated by the ORMGP Climate Data Service to the location of a known climate station. Ideally, the cumulative plots should overlie one another. Deviation between these two lines indicates potential bias between interpolation and point observation.
+
+With respect to precipitation, it is important to note that as of 2002, ECCC's CaPA-RDPA and as of 2010 NOAA's SNODAS are employed. Prior to that, ECCC's MSC station data were interpolated from. [Click for more information on the interpolation and the data sources used for the *ORMGP Climate Data Service*.](https://owrc.github.io/interpolants/sources/climate-data-service.html)
