@@ -13,13 +13,16 @@ output$gg.cumu <- renderPlot({
   if (!is.null(loc$df)) {
     df <- loc$df %>% filter(Date>dtb) %>% mutate(Date=as.Date(Date),yield=Rf+Sm) %>%
       complete(Date = seq.Date(min(Date,na.rm=TRUE), max(Date,na.rm=TRUE), by="day")) %>%
-      replace_na(list(Precip=mean(loc$df$Precip,na.rm=TRUE),yield=mean(loc$df$Rf,na.rm=TRUE)+mean(loc$df$Sm,na.rm=TRUE)))
+      replace_na(list(Precip=mean(loc$df$Precip,na.rm=TRUE),yield=mean(loc$df$Rf,na.rm=TRUE)+mean(loc$df$Sm,na.rm=TRUE))) %>%
+      mutate(observed=cumsum(Precip), interpolated=cumsum(yield), infil=is.na(Rf))
     
-    df <- data.frame(Date=df$Date, observed=cumsum(df$Precip), interpolated=cumsum(df$yield), infil=is.na(df$Rf))
+    # df <- data.frame(Date=df$Date, observed=cumsum(df$Precip), interpolated=cumsum(df$yield), infil=is.na(df$Rf))
+    # View(df)
     
     # blank-out infilled data
     df$observed[df$infil] = NA
     df$interpolated[df$infil] = NA
+    
     
     ggplot(df, aes(Date)) +
       theme_bw() + theme(legend.position=c(.9,.15),

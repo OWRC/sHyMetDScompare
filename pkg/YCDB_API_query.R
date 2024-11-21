@@ -106,4 +106,8 @@ buildDF <- function(df) {
     return(df.day.nozero)
   }
 }
-           
+        
+
+observe({
+  loc$lnk <- paste0('<a href="https://owrc.shinyapps.io/sHyMet/?sID=',loc$lid,'" target="_blank" rel="noopener noreferrer">open timeseries analysis tool</a>')
+})   

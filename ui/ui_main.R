@@ -6,8 +6,9 @@ fluidPage(
       
       h3("Climate Data-service vs. Observation"), 
       br(),
-      shiny::includeMarkdown("md/cumu_desc.md"),hr(),
-      dateInput("dt.cumu",label='select start date:'),
+      shiny::includeMarkdown("md/cumu_desc.md"), hr(),
+      dateInput("dt.cumu",label='select start date:'), hr(),
+      htmlOutput("link.shyclimate"),
       
       # selectInput("sel.api", "Interpolation type:",
       #             c("Point interpolation (daily)" = "dymetp",

@@ -1,6 +1,6 @@
 
 
-loc <<- reactiveValues(lid=NULL, iid=NULL, name=NULL, name2=NULL, df=NULL, 
+loc <<- reactiveValues(lid=NULL, iid=NULL, name=NULL, name2=NULL, lnk=NULL, df=NULL, 
                       DTb=NULL, DTe=NULL, lat=NULL, lng=NULL, label=NULL, 
                       info.html=NULL)
 
@@ -27,6 +27,7 @@ collect_temporal <- function(LOC_ID) {
     loc$DTb <- min(loc$df$Date, na.rm=T)
     loc$DTe <- max(loc$df$Date, na.rm=T)
     print(colnames(loc$df))
+    if (!"Precip" %in% colnames(loc$df)) loc$df$Precip = loc$df$Rain
     nam <- unname(xr.NLong[colnames(loc$df)[-1]])
     stat <- colMeans(loc$df[-1], na.rm = TRUE)*(xr.step[xr.Nshrt[nam]]*364.24+1)
     ndat <- sum(!is.na(loc$df[2]))-1
