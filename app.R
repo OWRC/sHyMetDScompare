@@ -48,7 +48,7 @@ shinyApp(
     
     ###################
     ### collect data:
-    # collect_temporal(730900042) #360000048) #(148690) #(148945)
+    # collect_temporal(148690) #(360000048) #(148945) #(730900042) #
     observe({
       query <- parseQueryString(session$clientData$url_search)
       if (!is.null(query[['iid']])) {
